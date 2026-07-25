@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Repeatly" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/text_gray</item>
+        <item name="colorPrimaryVariant">@color/text_gray</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/text_gray</item>
+        <item name="android:statusBarColor">@color/off_white_bg</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">@color/off_white_bg</item>
+    </style>
+
+    <style name="Theme.Repeatly.Splash" parent="Theme.Repeatly">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+</resources>
