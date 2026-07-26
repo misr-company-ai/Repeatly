@@ -18,17 +18,10 @@
             android:background="@drawable/bg_header"
             android:padding="24dp">
 
-            <ImageView
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:src="@mipmap/ic_launcher"
-                android:contentDescription="@string/app_name" />
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="12dp"
                 android:text="Repeatly"
                 android:textColor="@color/black"
                 android:textSize="24sp"
