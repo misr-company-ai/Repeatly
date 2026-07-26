@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         refreshInsights()
+        showWelcomeNotificationIfFirstLaunch()
     }
 
     private fun saveEntry() {
@@ -140,8 +141,6 @@ class MainActivity : AppCompatActivity() {
         val alreadyShown = prefs.getBoolean("welcome_shown", false)
         if (alreadyShown) return
 
-        prefs.edit().putBoolean("welcome_shown", true).apply()
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(
                     this, Manifest.permission.POST_NOTIFICATIONS
@@ -160,7 +159,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setSmallIcon(R.drawable.ic_stat_repeatly)
             .setContentTitle("أهلًا بيك في Repeatly")
             .setContentText("كل يوم اكتب اللي حصل معاك، وأنا هساعدك تكتشف الأنماط المتكررة")
             .setStyle(
@@ -172,5 +171,7 @@ class MainActivity : AppCompatActivity() {
 
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(WELCOME_NOTIFICATION_ID, notification)
+
+        prefs.edit().putBoolean("welcome_shown", true).apply()
     }
 }
