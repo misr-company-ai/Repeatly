@@ -42,7 +42,7 @@ class ReminderReceiver : BroadcastReceiver() {
         val pendingIntent = PendingIntent.getActivity(context, 3001, openIntent, flags)
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setSmallIcon(R.drawable.ic_stat_repeatly)
             .setContentTitle("Repeatly")
             .setContentText(message)
             .setStyle(NotificationCompat.BigTextStyle().bigText(message))
