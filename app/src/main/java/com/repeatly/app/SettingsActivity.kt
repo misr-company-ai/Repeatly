@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class SettingsActivity : AppCompatActivity() {
 
-    private val shareLink = "https://nearme.vercel.app/sharing"
+    private val shareLink = "https://nearme-navy.vercel.app/"
     private val developerLink = "https://omarabdelazizbe.vercel.app/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
