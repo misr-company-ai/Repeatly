@@ -6,6 +6,8 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.media.AudioAttributes
+import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
 
@@ -41,6 +43,9 @@ class ReminderReceiver : BroadcastReceiver() {
         }
         val pendingIntent = PendingIntent.getActivity(context, 3001, openIntent, flags)
 
+        // 🔥 صوت الإشعار
+        val soundUri = Uri.parse("android.resource://" + context.packageName + "/" + R.raw.notifications)
+
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_stat_repeatly)
             .setContentTitle("Repeatly")
@@ -48,6 +53,7 @@ class ReminderReceiver : BroadcastReceiver() {
             .setStyle(NotificationCompat.BigTextStyle().bigText(message))
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
+            .setSound(soundUri) // 🔥 إضافة الصوت هنا
             .build()
 
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -56,11 +62,22 @@ class ReminderReceiver : BroadcastReceiver() {
 
     private fun createChannelIfNeeded(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            // 🔥 صوت الإشعار
+            val soundUri = Uri.parse("android.resource://" + context.packageName + "/" + R.raw.notifications)
+
+            val audioAttributes = AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                .build()
+
             val channel = NotificationChannel(
                 CHANNEL_ID,
                 "Repeatly Reminders",
                 NotificationManager.IMPORTANCE_DEFAULT
             )
+
+            channel.setSound(soundUri, audioAttributes) // 🔥 مهم جدًا
+
             val manager = context.getSystemService(NotificationManager::class.java)
             manager.createNotificationChannel(channel)
         }
